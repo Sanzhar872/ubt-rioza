@@ -1,3 +1,4 @@
+import glob
 import json
 import sys
 from pathlib import Path
@@ -49,4 +50,9 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         raise SystemExit("Usage: python -m app.import_questions <file1.json> [file2.json ...]")
     for arg in sys.argv[1:]:
-        import_file(Path(arg))
+        matches = glob.glob(arg)
+        if not matches:
+            print(f"No files matched: {arg}")
+            continue
+        for match in matches:
+            import_file(Path(match))
