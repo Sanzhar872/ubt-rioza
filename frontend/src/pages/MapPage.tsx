@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MAP_PERIODS } from "../data/mapPeriods";
 
@@ -19,6 +19,13 @@ export default function MapPage() {
   const [value, setValue] = useState(0);
   const index = indexForValue(value);
   const period = MAP_PERIODS[index];
+
+  useEffect(() => {
+    MAP_PERIODS.forEach((p) => {
+      const img = new Image();
+      img.src = p.image;
+    });
+  }, []);
 
   const bucketStart = index * STEPS_PER_PERIOD;
   const progress = (value - bucketStart) / STEPS_PER_PERIOD;
