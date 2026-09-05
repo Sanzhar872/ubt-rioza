@@ -66,6 +66,12 @@ export default function MapPage() {
         onChange={(e) => setValue(Number(e.target.value))}
         className="map-slider"
       />
+
+      {value === MAX_VALUE && (
+        <Link to={`/${slug}/topics/34`} className="map-end-prompt">
+          МОҢҒОЛ ШАПҚЫНШЫЛЫҒЫ ТУРАЛЫ КӨРУ ҮШІН
+        </Link>
+      )}
     </div>
   );
 }

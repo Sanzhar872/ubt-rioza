@@ -447,3 +447,33 @@ h1 {
   margin-top: 1.5rem;
   accent-color: #cdc153;
 }
+
+.map-end-prompt {
+  display: block;
+  margin-top: 1.75rem;
+  padding: 1.1rem 1.5rem;
+  border-radius: 10px;
+  border: 2px solid #cdc153;
+  background: rgba(205, 193, 83, 0.12);
+  color: #fff3c4;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  animation: map-end-prompt-pulse 1.6s ease-in-out infinite;
+}
+
+.map-end-prompt:hover {
+  background: rgba(205, 193, 83, 0.22);
+}
+
+@keyframes map-end-prompt-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(205, 193, 83, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(205, 193, 83, 0);
+  }
+}
