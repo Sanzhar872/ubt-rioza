@@ -230,6 +230,18 @@ h1 {
   border-top: none;
 }
 
+.topic-highlight {
+  background: rgba(205, 193, 83, 0.1);
+  border-left: 3px solid #cdc153;
+  border-radius: 6px;
+  padding: 0.45rem 0.9rem;
+}
+
+.topic-highlight a {
+  color: #fff3c4;
+  font-weight: 600;
+}
+
 .video-wrapper {
   position: relative;
   width: 100%;

@@ -29,13 +29,14 @@ KAZ_TARIH_TOPICS = [
     {"title": "КЕРЕЙТ ЖАЛАЙЫРЛАР", "youtube_id": "O532PfqZaoM", "order_index": 20},
     {"title": "МОҢҒОЛ ШАПҚЫНШЫЛЫҒЫ", "youtube_id": "CZiezvvjoVI", "order_index": 21},
     {"title": "АЛТЫН ОРДА", "youtube_id": "WrECpTXfLkk", "order_index": 22},
-    {"title": "АҚ ОРДА", "youtube_id": "TKXNjIvyts4", "order_index": 23},
-    {"title": "МОҒОЛСТАН", "youtube_id": "IgTzk0C9Rjk", "order_index": 24},
-    {"title": "ӘМІР ТЕМІР", "youtube_id": "96vDqzngNig", "order_index": 25},
-    {"title": "НОҒАЙ ОРДАСЫ", "youtube_id": "K8JMJ5vJT1g", "order_index": 26},
-    {"title": "СІБІР ХАНДЫҒЫ", "youtube_id": "rGN3E-cPYP0", "order_index": 27},
-    {"title": "ӘБІЛХАЙЫР ХАНДЫҒЫ", "youtube_id": "6ev3ApVqXhM", "order_index": 28},
-    {"title": "ҚАЗАҚ ХАНДЫҒЫ", "youtube_id": "bjjjdyVbWf8", "order_index": 29},
+    {"title": "АЛТЫН ОРДА, АҚ ОРДА ТАРИХЫ", "youtube_id": "LdrDiWivRmA", "order_index": 23},
+    {"title": "АҚ ОРДА", "youtube_id": "TKXNjIvyts4", "order_index": 24},
+    {"title": "МОҒОЛСТАН", "youtube_id": "IgTzk0C9Rjk", "order_index": 25},
+    {"title": "ӘМІР ТЕМІР", "youtube_id": "96vDqzngNig", "order_index": 26},
+    {"title": "НОҒАЙ ОРДАСЫ", "youtube_id": "K8JMJ5vJT1g", "order_index": 27},
+    {"title": "СІБІР ХАНДЫҒЫ", "youtube_id": "rGN3E-cPYP0", "order_index": 28},
+    {"title": "ӘБІЛХАЙЫР ХАНДЫҒЫ", "youtube_id": "6ev3ApVqXhM", "order_index": 29},
+    {"title": "ҚАЗАҚ ХАНДЫҒЫ", "youtube_id": "bjjjdyVbWf8", "order_index": 30},
 ]
 
 

@@ -7,7 +7,15 @@ const ERA_LABELS: Record<string, string> = {
   "ЕРТЕ ТЕМІР ДӘУІРІНДЕГІ ҚАЗАҚСТАН": "Ерте темір дәуірі",
   "ТҮРІК ҚАҒАНАТЫ": "Ерте орта ғасыр",
   "ҚАРАХАН": "Дамыған орта ғасыр",
+  "МОҢҒОЛ ШАПҚЫНШЫЛЫҒЫ": "Моңғол дәуірі",
 };
+
+const HIGHLIGHTED_TITLES = new Set([
+  "МОҢҒОЛ ШАПҚЫНШЫЛЫҒЫ",
+  "АЛТЫН ОРДА",
+  "АЛТЫН ОРДА, АҚ ОРДА ТАРИХЫ",
+  "АҚ ОРДА",
+]);
 
 export default function TopicListPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -45,7 +53,7 @@ export default function TopicListPage() {
         {topics.map((topic, i) => (
           <Fragment key={topic.id}>
             {ERA_LABELS[topic.title] && <li className="era-header">{ERA_LABELS[topic.title]}</li>}
-            <li>
+            <li className={HIGHLIGHTED_TITLES.has(topic.title) ? "topic-highlight" : undefined}>
               <Link to={`/${slug}/topics/${topic.id}`}>
                 {i + 1}. {topic.title}
               </Link>
