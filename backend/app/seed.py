@@ -44,11 +44,14 @@ KAZ_TARIH_TOPICS = [
     {"title": "ЖОҢҒАР ШАПҚЫНШЫЛЫҒЫ", "youtube_id": "VQm9DZS0h2w", "order_index": 35},
     {"title": "ЖОҢҒАР ШАПҚЫНШЫЛЫҒЫ (JUZ40)", "youtube_id": "Cy7x8WC8pAA", "order_index": 36},
     {"title": "КІШІ ЖҮЗДІҢ РЕСЕЙГЕ ҚОСЫЛУЫ", "youtube_id": "QhOD4WnKBuw", "order_index": 37},
-    {"title": "АБЫЛАЙ ХАН", "youtube_id": "KIlM7fMdTRA", "order_index": 38},
-    {"title": "ПУГАЧЕВ КӨТЕРІЛІСІ", "youtube_id": "BiaAJMrkH0Y", "order_index": 39},
-    {"title": "СЫРЫМ ДАТҰЛЫ БАСТАҒАН КӨТЕРІЛІС", "youtube_id": "pIevAQqptj8", "order_index": 40},
-    {"title": "ИСАТАЙ МЕН МАХАМБЕТ БАСТАҒАН КӨТЕРІЛІС", "youtube_id": "n30jRRhNFr4", "order_index": 41},
-    {"title": "КЕНЕСАРЫ ҚАСЫМҰЛЫ БАСТАҒАН КӨТЕРІЛІС", "youtube_id": "rxeyfuSkqY0", "order_index": 42},
+    {"title": "КІШІ ЖҮЗДІҢ РЕСЕЙГЕ ҚОСЫЛУЫ (JUZ40)", "youtube_id": "f_tJ6E5DL50", "order_index": 38},
+    {"title": "АБЫЛАЙ ХАН", "youtube_id": "KIlM7fMdTRA", "order_index": 39},
+    {"title": "ПУГАЧЕВ КӨТЕРІЛІСІ", "youtube_id": "BiaAJMrkH0Y", "order_index": 40},
+    {"title": "СЫРЫМ ДАТҰЛЫ БАСТАҒАН КӨТЕРІЛІС", "youtube_id": "pIevAQqptj8", "order_index": 41},
+    {"title": "ИСАТАЙ МЕН МАХАМБЕТ БАСТАҒАН КӨТЕРІЛІС", "youtube_id": "n30jRRhNFr4", "order_index": 42},
+    {"title": "БӨКЕЙ ОРДА КӨТЕРІЛІСІ", "youtube_id": "kAnVISrHHQ0", "order_index": 43},
+    {"title": "БӨКЕЙ ОРДА КӨТЕРІЛІСІ (EASYTARIH)", "youtube_id": "bJ1zB9B9_hI", "order_index": 44},
+    {"title": "КЕНЕСАРЫ ҚАСЫМҰЛЫ БАСТАҒАН КӨТЕРІЛІС", "youtube_id": "rxeyfuSkqY0", "order_index": 45},
 ]
 
 
