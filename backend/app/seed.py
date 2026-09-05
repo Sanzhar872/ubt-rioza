@@ -53,6 +53,20 @@ KAZ_TARIH_TOPICS = [
     {"title": "БӨКЕЙ ОРДА КӨТЕРІЛІСІ", "youtube_id": "kAnVISrHHQ0", "order_index": 44},
     {"title": "БӨКЕЙ ОРДА КӨТЕРІЛІСІ (EASYTARIH)", "youtube_id": "bJ1zB9B9_hI", "order_index": 45},
     {"title": "КЕНЕСАРЫ ҚАСЫМҰЛЫ БАСТАҒАН КӨТЕРІЛІС", "youtube_id": "rxeyfuSkqY0", "order_index": 46},
+    {"title": "УАҚЫТША ЕРЕЖЕ", "youtube_id": "6rO7DWNfznw", "order_index": 47},
+    {"title": "ҰЙҒЫРЛАР МЕН ДҮНГЕНДЕРДІҢ ҚЫТАЙДАН ЖЕТІСУҒА ҚОНЫС АУДАРУЫ", "youtube_id": "nsAPUwkGTNU", "order_index": 48},
+    {"title": "XX ҒАСЫРДАҒЫ ҚАЗАҚСТАН", "youtube_id": "ahnjPQxf39w", "order_index": 49},
+    {"title": "XX ҒАСЫРДАҒЫ ҚАЗАҚСТАН (EASYTARIH)", "youtube_id": "VMawHOtu2P4", "order_index": 50},
+    {"title": "ГАЗЕТ ЖУРНАЛДАР", "youtube_id": "acpfywYeBuI", "order_index": 51},
+    {"title": "1916 ЖЫЛҒЫ ҰЛТ-АЗАТТЫҚ КӨТЕРІЛІС", "youtube_id": "OW86e7RcNEY", "order_index": 52},
+    {"title": "АҚПАН РЕВОЛЮЦИЯСЫ", "youtube_id": "Ped7Q06LVCE", "order_index": 53},
+    {"title": "ҚАЗАН ТӨҢКЕРІСІ", "youtube_id": "rdI5C4vYDLM", "order_index": 54},
+    {"title": "АЗАМАТ СОҒЫСЫ", "youtube_id": "VygIETNOblU", "order_index": 55},
+    {"title": "ҚАЗАҚТЫҢ ҰЛТТЫҚ МЕМЛЕКЕТТІЛІГІНІҢ ҚАЙТА ҚАЛПЫНА КЕЛТІРІЛУІ", "youtube_id": "MeYBIYIMB5s", "order_index": 56},
+    {"title": "ЖЭС", "youtube_id": "5XNE3_BOr0w", "order_index": 57},
+    {"title": "1920-40 ЖЫЛДАРДАҒЫ ҚАЗАҚСТАН", "youtube_id": "qalEA179ZwU", "order_index": 58},
+    {"title": "ҰЖЫМДАСТЫРУ САЯСАТЫ", "youtube_id": "LWxmygMjNz0", "order_index": 59},
+    {"title": "ҚАЗАҚСТАНДАҒЫ МӘДЕНИ ҚҰРЫЛЫС", "youtube_id": "EIIiCkTdHtc", "order_index": 60},
 ]
 
 
