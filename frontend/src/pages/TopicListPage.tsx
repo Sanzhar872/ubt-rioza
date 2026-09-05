@@ -23,6 +23,24 @@ const HIGHLIGHTED_TITLES = new Set([
   "КЕНЕСАРЫ ҚАСЫМҰЛЫ БАСТАҒАН КӨТЕРІЛІС",
 ]);
 
+const BLUE_HIGHLIGHTED_TITLES = new Set([
+  "ӘБІЛХАЙЫР ХАНДЫҒЫ",
+  "ҚАЗАҚ ХАНДЫҒЫ (1-бөлім)",
+  "ҚАЗАҚ ХАНДЫҒЫ (2-бөлім)",
+  "ҚАЗАҚ ХАНДЫҒЫ (3-бөлім)",
+  "ҚАЗАҚ ХАНДЫҒЫ (4-бөлім)",
+  "ЖОҢҒАР ШАПҚЫНШЫЛЫҒЫ",
+  "ЖОҢҒАР ШАПҚЫНШЫЛЫҒЫ (JUZ40)",
+  "КІШІ ЖҮЗДІҢ РЕСЕЙГЕ ҚОСЫЛУЫ",
+  "АБЫЛАЙ ХАН",
+]);
+
+function topicClassName(title: string): string | undefined {
+  if (HIGHLIGHTED_TITLES.has(title)) return "topic-highlight";
+  if (BLUE_HIGHLIGHTED_TITLES.has(title)) return "topic-highlight-blue";
+  return undefined;
+}
+
 export default function TopicListPage() {
   const { slug } = useParams<{ slug: string }>();
   const [topics, setTopics] = useState<Topic[]>([]);
@@ -59,7 +77,7 @@ export default function TopicListPage() {
         {topics.map((topic, i) => (
           <Fragment key={topic.id}>
             {ERA_LABELS[topic.title] && <li className="era-header">{ERA_LABELS[topic.title]}</li>}
-            <li className={HIGHLIGHTED_TITLES.has(topic.title) ? "topic-highlight" : undefined}>
+            <li className={topicClassName(topic.title)}>
               <Link to={`/${slug}/topics/${topic.id}`}>
                 {i + 1}. {topic.title}
               </Link>

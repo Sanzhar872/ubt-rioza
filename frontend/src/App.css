@@ -242,6 +242,18 @@ h1 {
   font-weight: 600;
 }
 
+.topic-highlight-blue {
+  background: rgba(90, 155, 235, 0.1);
+  border-left: 3px solid #5a9beb;
+  border-radius: 6px;
+  padding: 0.45rem 0.9rem;
+}
+
+.topic-highlight-blue a {
+  color: #cfe4ff;
+  font-weight: 600;
+}
+
 .variant-group {
   margin-bottom: 1.25rem;
 }
