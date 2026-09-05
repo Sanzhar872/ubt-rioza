@@ -38,8 +38,8 @@ export default function TopicListPage() {
         <h1>Темы</h1>
         {slug === "kaz-tarih" && (
           <div className="topic-header-actions">
-            <Link to={`/${slug}/timeline`} className="map-link">
-              Таймлайн
+            <Link to={`/${slug}/nuska-taldau`} className="map-link">
+              Нұсқа талдау
             </Link>
             <Link to={`/${slug}/map`} className="map-link">
               Показать карту по периодам
