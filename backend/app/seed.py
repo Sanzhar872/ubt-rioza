@@ -36,7 +36,10 @@ KAZ_TARIH_TOPICS = [
     {"title": "НОҒАЙ ОРДАСЫ", "youtube_id": "K8JMJ5vJT1g", "order_index": 27},
     {"title": "СІБІР ХАНДЫҒЫ", "youtube_id": "rGN3E-cPYP0", "order_index": 28},
     {"title": "ӘБІЛХАЙЫР ХАНДЫҒЫ", "youtube_id": "6ev3ApVqXhM", "order_index": 29},
-    {"title": "ҚАЗАҚ ХАНДЫҒЫ", "youtube_id": "bjjjdyVbWf8", "order_index": 30},
+    {"title": "ҚАЗАҚ ХАНДЫҒЫ (1-бөлім)", "youtube_id": "bjjjdyVbWf8", "order_index": 30},
+    {"title": "ҚАЗАҚ ХАНДЫҒЫ (2-бөлім)", "youtube_id": "M7a3oCrAEDA", "order_index": 31},
+    {"title": "ҚАЗАҚ ХАНДЫҒЫ (3-бөлім)", "youtube_id": "wMXrgdi_Br4", "order_index": 32},
+    {"title": "ҚАЗАҚ ХАНДЫҒЫ (4-бөлім)", "youtube_id": "o7CPLRU692c", "order_index": 33},
 ]
 
 

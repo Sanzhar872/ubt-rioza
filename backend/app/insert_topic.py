@@ -12,6 +12,9 @@ import sys
 from app import models
 from app.database import SessionLocal
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 
 def insert_topic(subject_slug: str, after_order_index: int, title: str, youtube_id: str) -> None:
     db = SessionLocal()
