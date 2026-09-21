@@ -1,0 +1,373 @@
+/* Server wake-up screen — night steppe, shanyrak loader.
+   Palette matches the site: gold #cdc153, cream #f0ead6, dark #1e2130 / #262934. */
+
+.wake-screen {
+  --gold: #cdc153;
+  --cream: #f0ead6;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow: hidden;
+  color: var(--cream);
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 105%, rgba(205, 193, 83, 0.16), transparent 70%),
+    linear-gradient(180deg, #14172a 0%, #1e2130 55%, #262934 100%);
+  animation: wake-in 0.5s ease both;
+}
+
+.wake-screen.is-ready {
+  animation: wake-out 0.7s ease forwards;
+  pointer-events: none;
+}
+
+/* ---------- sky & steppe ---------- */
+
+.wake-sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wake-star {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--cream);
+  opacity: 0.15;
+  animation: wake-twinkle var(--dur) ease-in-out var(--delay) infinite;
+}
+
+.wake-steppe {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 26vh;
+  min-height: 120px;
+}
+
+.wake-hill-far {
+  fill: #191c2e;
+}
+
+.wake-hill-near {
+  fill: #12141f;
+}
+
+.wake-yurt {
+  fill: #0c0e17;
+  stroke: rgba(205, 193, 83, 0.35);
+  stroke-width: 1;
+}
+
+.wake-yurt-band {
+  fill: none;
+  stroke: rgba(205, 193, 83, 0.35);
+  stroke-width: 1;
+}
+
+.wake-door {
+  fill: var(--gold);
+  filter: drop-shadow(0 0 6px rgba(205, 193, 83, 0.9));
+  animation: wake-flicker 3.4s ease-in-out infinite;
+}
+
+/* ---------- content ---------- */
+
+.wake-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* keep the text clear of the steppe silhouette on short screens */
+  padding-bottom: 8vh;
+}
+
+.wake-emblem {
+  position: relative;
+  width: clamp(140px, 28vh, 200px);
+  aspect-ratio: 1;
+  margin-bottom: 1.25rem;
+  transition: transform 0.7s cubic-bezier(0.5, 0, 0.2, 1), opacity 0.7s ease;
+}
+
+.wake-screen.is-ready .wake-emblem {
+  transform: scale(1.7);
+  opacity: 0;
+}
+
+.wake-glow {
+  position: absolute;
+  inset: -30%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(205, 193, 83, 0.34) 0%, rgba(205, 193, 83, 0) 62%);
+  animation: wake-breathe 3.2s ease-in-out infinite;
+}
+
+.wake-shanyrak {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+  stroke: var(--gold);
+  stroke-linecap: round;
+}
+
+.wake-ring-outer {
+  stroke-width: 1.2;
+  stroke-dasharray: 2 7;
+  opacity: 0.55;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wake-spin 38s linear infinite;
+}
+
+.wake-orbit-dot {
+  fill: var(--gold);
+  stroke: none;
+  opacity: 0.5;
+}
+
+.wake-ring {
+  stroke-width: 4;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 5px rgba(205, 193, 83, 0.55));
+}
+
+.wake-ring-thin {
+  stroke-width: 2;
+}
+
+.wake-spoke {
+  stroke-width: 2.4;
+  opacity: 0.18;
+  animation: wake-spoke 1.6s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+.wake-beam {
+  stroke-width: 3.5;
+  opacity: 0.5;
+}
+
+.wake-core {
+  fill: var(--gold);
+  stroke: none;
+  filter: drop-shadow(0 0 8px rgba(205, 193, 83, 0.9));
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wake-core 1.6s ease-in-out infinite;
+}
+
+.wake-screen.is-failed .wake-spoke,
+.wake-screen.is-failed .wake-core,
+.wake-screen.is-failed .wake-glow,
+.wake-screen.is-failed .wake-ring-outer {
+  animation-play-state: paused;
+}
+
+.wake-screen.is-failed .wake-shanyrak {
+  opacity: 0.4;
+  filter: grayscale(0.6);
+}
+
+.wake-screen.is-failed .wake-glow {
+  opacity: 0.3;
+}
+
+.wake-overline {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+.wake-title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.35rem, 4.5vw, 1.75rem);
+  font-weight: 700;
+  color: var(--cream);
+  animation: wake-rise 0.5s ease both;
+}
+
+.wake-hint {
+  margin: 0 0 1.4rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #b3ad9a;
+}
+
+/* ---------- progress ---------- */
+
+.wake-progress {
+  width: min(320px, 100%);
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(240, 234, 214, 0.1);
+  overflow: hidden;
+}
+
+.wake-progress-bar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(205, 193, 83, 0.55), var(--gold));
+  transform-origin: left center;
+  transition: transform 0.6s ease-out;
+  overflow: hidden;
+}
+
+/* a soft light that keeps sweeping, so the bar never looks frozen */
+.wake-progress-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: translateX(-100%);
+  animation: wake-sweep 1.8s ease-in-out infinite;
+}
+
+.wake-timer {
+  margin: 0.6rem 0 1.6rem;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: rgba(240, 234, 214, 0.45);
+}
+
+/* ---------- facts ---------- */
+
+.wake-fact-box {
+  width: 100%;
+  padding: 0.9rem 1.1rem 1rem;
+  border: 1px solid rgba(205, 193, 83, 0.2);
+  border-radius: 10px;
+  background: rgba(30, 33, 48, 0.72);
+  backdrop-filter: blur(4px);
+  min-height: 6.4rem;
+}
+
+.wake-fact-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.wake-fact {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--cream);
+  animation: wake-rise 0.6s ease both;
+}
+
+/* ---------- retry ---------- */
+
+.wake-retry {
+  padding: 0.7rem 1.6rem;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  background: rgba(205, 193, 83, 0.14);
+  color: var(--gold);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.wake-retry:hover {
+  background: rgba(205, 193, 83, 0.26);
+  transform: translateY(-1px);
+}
+
+.wake-retry:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 3px;
+}
+
+/* ---------- keyframes ---------- */
+
+@keyframes wake-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes wake-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes wake-twinkle {
+  0%, 100% { opacity: 0.12; transform: scale(0.8); }
+  50% { opacity: 0.9; transform: scale(1.25); }
+}
+
+@keyframes wake-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes wake-spoke {
+  0%, 100% { opacity: 0.18; }
+  18% { opacity: 1; stroke-width: 3.2; }
+  55% { opacity: 0.18; stroke-width: 2.4; }
+}
+
+@keyframes wake-core {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+}
+
+@keyframes wake-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(0.92); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+@keyframes wake-flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.75; }
+  60% { opacity: 1; }
+}
+
+@keyframes wake-sweep {
+  to { transform: translateX(100%); }
+}
+
+@keyframes wake-rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-height: 640px) {
+  .wake-emblem { width: 110px; margin-bottom: 0.75rem; }
+  .wake-hint { margin-bottom: 1rem; }
+  .wake-timer { margin-bottom: 1rem; }
+  .wake-fact-box { min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wake-screen,
+  .wake-screen * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .wake-star { opacity: 0.5; }
+  .wake-spoke { opacity: 0.7; }
+}

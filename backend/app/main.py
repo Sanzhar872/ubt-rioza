@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app import models
@@ -22,6 +23,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/api/health")
+def health(db: Session = Depends(get_db)):
+    # Touch the DB so a wake-up ping warms the connection too, not just the process.
+    db.execute(text("SELECT 1"))
+    return {"status": "ok"}
 
 
 @app.get("/api/subjects", response_model=list[SubjectOut])

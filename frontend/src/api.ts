@@ -29,6 +29,18 @@ async function get<T>(path: string): Promise<T> {
   return res.json();
 }
 
+// Resolves once the backend (and its DB) answers. Rejects on network error,
+// non-2xx, or timeout — callers are expected to retry while the server wakes up.
+export async function pingServer(timeoutMs = 15000): Promise<void> {
+  const res = await fetch(`${API_URL}/api/health`, {
+    cache: "no-store",
+    signal: AbortSignal.timeout(timeoutMs),
+  });
+  if (!res.ok) {
+    throw new Error(`Server not ready: ${res.status}`);
+  }
+}
+
 export function fetchSubjects(): Promise<Subject[]> {
   return get<Subject[]>("/api/subjects");
 }
