@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchTopics, type Topic } from "../api";
+import ViewedMark from "../components/ViewedMark";
+import { useViewedTopics } from "../viewedTopics";
 
 const ERA_LABELS: Record<string, string> = {
   "ТАС ДӘУІРІ": "Тас дәуірі",
@@ -48,6 +50,7 @@ export default function TopicListPage() {
   const { slug } = useParams<{ slug: string }>();
   const [topics, setTopics] = useState<Topic[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const viewedTopics = useViewedTopics();
 
   useEffect(() => {
     if (!slug) return;
@@ -80,10 +83,11 @@ export default function TopicListPage() {
         {topics.map((topic, i) => (
           <Fragment key={topic.id}>
             {ERA_LABELS[topic.title] && <li className="era-header">{ERA_LABELS[topic.title]}</li>}
-            <li className={topicClassName(topic.title)}>
+            <li className={["topic-row", topicClassName(topic.title)].filter(Boolean).join(" ")}>
               <Link to={`/${slug}/topics/${topic.id}`}>
                 {i + 1}. {topic.title}
               </Link>
+              <ViewedMark viewed={viewedTopics.has(topic.id)} />
             </li>
           </Fragment>
         ))}

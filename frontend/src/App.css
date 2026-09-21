@@ -47,6 +47,10 @@
 
 .sidebar-topic-btn {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
   text-align: left;
   background: transparent;
   border: none;
@@ -200,6 +204,19 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+}
+
+.topic-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  /* same right inset as the highlighted rows so all checks line up in one column */
+  padding-right: 0.9rem;
+}
+
+.topic-row a {
+  flex: 1;
+  min-width: 0;
 }
 
 .topic-list a {
@@ -487,5 +504,60 @@ h1 {
   }
   50% {
     box-shadow: 0 0 0 10px rgba(205, 193, 83, 0);
+  }
+}
+
+/* ---------- "viewed" check ---------- */
+
+.viewed-slot {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.viewed-mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  color: #5ee08a;
+  background: rgba(94, 224, 138, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(94, 224, 138, 0.4);
+}
+
+.viewed-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.viewed-mark--animate {
+  animation: viewed-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.viewed-mark--animate path {
+  stroke-dasharray: 14;
+  animation: viewed-draw 0.3s ease-out 0.12s both;
+}
+
+@keyframes viewed-pop {
+  from { transform: scale(0.4); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes viewed-draw {
+  from { stroke-dashoffset: 14; }
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewed-mark--animate,
+  .viewed-mark--animate path {
+    animation: none;
   }
 }

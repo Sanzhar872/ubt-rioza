@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { fetchQuestions, fetchTopic, fetchTopics, type Topic } from "../api";
 import QuizSection from "../components/QuizSection";
+import ViewedMark from "../components/ViewedMark";
+import { markTopicViewed, useViewedTopics } from "../viewedTopics";
 
 export default function TopicDetailPage() {
   const { slug, topicId } = useParams<{ slug: string; topicId: string }>();
@@ -11,11 +13,17 @@ export default function TopicDetailPage() {
   const [hasQuiz, setHasQuiz] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const viewedTopics = useViewedTopics();
 
   useEffect(() => {
     if (!slug) return;
     fetchTopics(slug).then(setTopics).catch(() => {});
   }, [slug]);
+
+  // Count a topic as viewed once its page has actually loaded.
+  useEffect(() => {
+    if (topic) markTopicViewed(topic.id);
+  }, [topic]);
 
   useEffect(() => {
     if (!topicId) return;
@@ -44,7 +52,8 @@ export default function TopicDetailPage() {
                 className={`sidebar-topic-btn ${t.id === Number(topicId) ? "active" : ""}`}
                 onClick={() => navigate(`/${slug}/topics/${t.id}`)}
               >
-                {t.title}
+                <span>{t.title}</span>
+                <ViewedMark viewed={viewedTopics.has(t.id)} />
               </button>
             </li>
           ))}
