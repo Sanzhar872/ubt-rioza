@@ -12,18 +12,23 @@ export interface QuizTopic {
   count: number;
 }
 
-const BANK_URL = "/data/kaz-tarih-quiz.json";
+// Each prepared question file lives in /public/data. Add new files here as
+// they're ready — no other code needs to change.
+const BANK_FILES = ["/data/kaz-tarih-quiz.json", "/data/tas-dauyr-2.json"];
 
 // Fetched once per page load and shared by every caller.
 let bankPromise: Promise<QuizQuestion[]> | null = null;
 
+async function loadFile(url: string): Promise<QuizQuestion[]> {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to load quiz bank: ${url} (${res.status})`);
+  return res.json() as Promise<QuizQuestion[]>;
+}
+
 export function fetchQuizBank(): Promise<QuizQuestion[]> {
   if (!bankPromise) {
-    bankPromise = fetch(BANK_URL)
-      .then((res) => {
-        if (!res.ok) throw new Error(`Failed to load quiz bank: ${res.status}`);
-        return res.json() as Promise<QuizQuestion[]>;
-      })
+    bankPromise = Promise.all(BANK_FILES.map(loadFile))
+      .then((files) => files.flat())
       .catch((err) => {
         bankPromise = null; // allow retry on next call
         throw err;
