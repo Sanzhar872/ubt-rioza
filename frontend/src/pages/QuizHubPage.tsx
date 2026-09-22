@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { fetchQuizBank, groupByTopic, type QuizTopic } from "../quizBank";
+import { fetchQuizTopic, QUIZ_TOPICS } from "../quizBank";
 
 export default function QuizHubPage() {
   const { slug } = useParams<{ slug: string }>();
-  const [topics, setTopics] = useState<QuizTopic[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [counts, setCounts] = useState<Record<string, number>>({});
 
   useEffect(() => {
-    fetchQuizBank()
-      .then((bank) => setTopics(groupByTopic(bank)))
-      .catch(() => setError("Тест сұрақтарын жүктеу мүмкін болмады."));
+    QUIZ_TOPICS.forEach((meta) => {
+      fetchQuizTopic(meta.slug)
+        .then((data) => setCounts((c) => ({ ...c, [meta.slug]: data.questions.length })))
+        .catch(() => {});
+    });
   }, []);
 
   return (
@@ -20,20 +21,18 @@ export default function QuizHubPage() {
       </Link>
       <h1>Тест тақырыптары</h1>
       <p className="subtitle">Тақырыпты таңдап, тестті бастаңыз</p>
-      {error && <p className="error">{error}</p>}
-      {!error && !topics && <p className="subtitle">Жүктелуде...</p>}
-      {topics && (
-        <ul className="quiz-topic-list">
-          {topics.map(({ topic, count }) => (
-            <li key={topic}>
-              <Link to={`/${slug}/quiz/${encodeURIComponent(topic)}`} className="quiz-topic-card">
-                <span className="quiz-topic-card-title">{topic}</span>
-                <span className="quiz-topic-card-count">{count} сұрақ</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul className="quiz-topic-list">
+        {QUIZ_TOPICS.map(({ slug: topicSlug, title }) => (
+          <li key={topicSlug}>
+            <Link to={`/${slug}/quiz/${topicSlug}`} className="quiz-topic-card">
+              <span className="quiz-topic-card-title">{title}</span>
+              {counts[topicSlug] !== undefined && (
+                <span className="quiz-topic-card-count">{counts[topicSlug]} сұрақ</span>
+              )}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

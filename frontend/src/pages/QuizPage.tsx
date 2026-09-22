@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { fetchQuizBank, type QuizQuestion } from "../quizBank";
+import { fetchQuizTopic, type QuizQuestion } from "../quizBank";
 
 function shuffle<T>(items: T[]): T[] {
   const result = [...items];
@@ -19,9 +19,9 @@ function resultMessage(ratio: number): string {
 }
 
 export default function QuizPage() {
-  const { slug, topic } = useParams<{ slug: string; topic: string }>();
-  const topicName = topic ? decodeURIComponent(topic) : "";
+  const { slug, topicSlug } = useParams<{ slug: string; topicSlug: string }>();
 
+  const [topicTitle, setTopicTitle] = useState<string | null>(null);
   const [questions, setQuestions] = useState<QuizQuestion[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [current, setCurrent] = useState(0);
@@ -30,22 +30,23 @@ export default function QuizPage() {
   const [runId, setRunId] = useState(0);
 
   useEffect(() => {
+    if (!topicSlug) return;
     setQuestions(null);
     setError(null);
     setCurrent(0);
     setSelected(null);
     setScore(0);
-    fetchQuizBank()
-      .then((bank) => {
-        const filtered = shuffle(bank.filter((q) => q.topic === topicName));
-        if (filtered.length === 0) {
+    fetchQuizTopic(topicSlug)
+      .then((data) => {
+        if (data.questions.length === 0) {
           setError("Бұл тақырып бойынша сұрақтар табылмады.");
           return;
         }
-        setQuestions(filtered);
+        setTopicTitle(data.topic);
+        setQuestions(shuffle(data.questions));
       })
       .catch(() => setError("Тест сұрақтарын жүктеу мүмкін болмады."));
-  }, [topicName, runId]);
+  }, [topicSlug, runId]);
 
   const progressPct = useMemo(() => {
     if (!questions) return 0;
@@ -98,7 +99,7 @@ export default function QuizPage() {
       <Link to={`/${slug}/quiz`} className="back-link">
         ← Тақырыптарға оралу
       </Link>
-      <h1 className="quiz-page-title">{topicName}</h1>
+      <h1 className="quiz-page-title">{topicTitle}</h1>
 
       {finished ? (
         <div className="quiz-result quiz-result-card">

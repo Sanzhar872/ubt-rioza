@@ -16,7 +16,7 @@ export default function App() {
         {/* The quiz bank is a static JSON file, no backend involved — don't make it
             wait behind the (possibly sleeping) free-tier API. */}
         <Route path="/:slug/quiz" element={<QuizHubPage />} />
-        <Route path="/:slug/quiz/:topic" element={<QuizPage />} />
+        <Route path="/:slug/quiz/:topicSlug" element={<QuizPage />} />
 
         <Route
           path="/*"

@@ -1,46 +1,51 @@
 export interface QuizQuestion {
   id: number;
-  topic: string;
   question: string;
   options: string[];
   correct_index: number;
   explanation?: string;
 }
 
-export interface QuizTopic {
+export interface QuizTopicFile {
   topic: string;
-  count: number;
+  questions: QuizQuestion[];
 }
 
-// Each prepared question file lives in /public/data. Add new files here as
-// they're ready — no other code needs to change.
-const BANK_FILES = ["/data/kaz-tarih-quiz.json", "/data/tas-dauyr-2.json"];
-
-// Fetched once per page load and shared by every caller.
-let bankPromise: Promise<QuizQuestion[]> | null = null;
-
-async function loadFile(url: string): Promise<QuizQuestion[]> {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed to load quiz bank: ${url} (${res.status})`);
-  return res.json() as Promise<QuizQuestion[]>;
+export interface QuizTopicMeta {
+  slug: string;
+  title: string;
+  file: string;
 }
 
-export function fetchQuizBank(): Promise<QuizQuestion[]> {
-  if (!bankPromise) {
-    bankPromise = Promise.all(BANK_FILES.map(loadFile))
-      .then((files) => files.flat())
+// One JSON file per topic, living in /public/data. To add a topic, drop its
+// file there ({"topic": "...", "questions": [...]}) and add one line here.
+export const QUIZ_TOPICS: QuizTopicMeta[] = [
+  { slug: "tas-dauiri", title: "Тас дәуірі", file: "/data/tas-dauiri.json" },
+  { slug: "algashky-adamdar-omiri", title: "Алғашқы адамдар өмірі", file: "/data/algashky-adamdar-omiri.json" },
+  { slug: "kaz-jerinde-tas-dauyr", title: "Қазақстандағы палеолит", file: "/data/kaz-jerinde-tas-dauyr.json" },
+  { slug: "mezolit", title: "Мезолит", file: "/data/mezolit.json" },
+  { slug: "neolit", title: "Неолит", file: "/data/neolit.json" },
+];
+
+// Fetched at most once per topic per page load and shared by every caller.
+const cache = new Map<string, Promise<QuizTopicFile>>();
+
+export function fetchQuizTopic(slug: string): Promise<QuizTopicFile> {
+  const meta = QUIZ_TOPICS.find((t) => t.slug === slug);
+  if (!meta) return Promise.reject(new Error(`Unknown quiz topic: ${slug}`));
+
+  let cached = cache.get(slug);
+  if (!cached) {
+    cached = fetch(meta.file)
+      .then((res) => {
+        if (!res.ok) throw new Error(`Failed to load ${meta.file}: ${res.status}`);
+        return res.json() as Promise<QuizTopicFile>;
+      })
       .catch((err) => {
-        bankPromise = null; // allow retry on next call
+        cache.delete(slug); // allow retry on next call
         throw err;
       });
+    cache.set(slug, cached);
   }
-  return bankPromise;
-}
-
-export function groupByTopic(questions: QuizQuestion[]): QuizTopic[] {
-  const counts = new Map<string, number>();
-  for (const q of questions) {
-    counts.set(q.topic, (counts.get(q.topic) ?? 0) + 1);
-  }
-  return [...counts.entries()].map(([topic, count]) => ({ topic, count }));
+  return cached;
 }
