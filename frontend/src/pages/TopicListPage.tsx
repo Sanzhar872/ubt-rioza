@@ -74,6 +74,9 @@ export default function TopicListPage() {
             <Link to={`/${slug}/map`} className="map-link">
               Показать карту по периодам
             </Link>
+            <Link to={`/${slug}/quiz`} className="quiz-cta-link">
+              Пройти квиз
+            </Link>
           </div>
         )}
       </div>
