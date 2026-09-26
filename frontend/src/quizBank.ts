@@ -25,6 +25,9 @@ export const QUIZ_TOPICS: QuizTopicMeta[] = [
   { slug: "kaz-jerinde-tas-dauyr", title: "Қазақстандағы палеолит", file: "/data/kaz-jerinde-tas-dauyr.json" },
   { slug: "mezolit", title: "Мезолит", file: "/data/mezolit.json" },
   { slug: "neolit", title: "Неолит", file: "/data/neolit.json" },
+  { slug: "temir-dauiri", title: "Темір дәуірі", file: "/data/temir-dauiri.json" },
+  { slug: "erte-orta-gasyr", title: "Ерте орта ғасыр", file: "/data/erte-orta-gasyr.json" },
+  { slug: "damygan-orta-gasyr", title: "Дамыған орта ғасыр", file: "/data/damygan-orta-gasyr.json" },
 ];
 
 // Fetched at most once per topic per page load and shared by every caller.
